@@ -1,0 +1,22 @@
+## Docker-compose
+
+version: '3'
+services:
+   jenkins:
+      container_name: jenkins
+      image: jenkins/jenkins
+      ports:
+        - "8080:8080"
+      volumes:
+        - /jenkins-data/jenkins-home:/var/jenkins-home
+      networks:
+        - net
+   remote-host:
+      container_name: remote-host
+      image: remote-host
+      build:
+        context: centos
+      networks:
+        - net
+networks:
+   net:
